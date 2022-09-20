@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import Dropdown from 'react-bootstrap/Dropdown';
+import Form from 'react-bootstrap/Form'
+import "bootstrap/dist/css/bootstrap.min.css";
 import './Body.css'
 import axios from 'axios'
 import {BsSearch, BsFillPenFill} from 'react-icons/bs'
-import {TbArrowsSort} from 'react-icons/tb'
+import {FiArrowDown, FiArrowUp} from 'react-icons/fi'
 import {RiArrowDropDownLine} from 'react-icons/ri'
 import Modal1 from './Modal1'
 
@@ -47,9 +50,38 @@ function Body() {
             <input className='body_input' />
         </div>
         <div className='btn__div'>
-            <div className='btn_sort'>
+            {/* <div className='btn_sort'>
                 <TbArrowsSort /><button className='btn'>Sort</button>
-            </div>
+            </div> */}
+            <Dropdown>
+      <Dropdown.Toggle variant="light" id="dropdown-basic">
+        Sort
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <div className='check'>
+            <Form.Check type="radio" aria-label="radio 1" /><Dropdown.Item>Store Name</Dropdown.Item>
+        </div>
+        <div className='check'>
+            <Form.Check type="radio" aria-label="radio 1" /><Dropdown.Item>Date Added</Dropdown.Item>
+        </div>
+        <div className='check'>
+            <Form.Check type="radio" aria-label="radio 1" /><Dropdown.Item>Platform Fee</Dropdown.Item>
+        </div>
+        <div className='check'>
+            <Form.Check type="radio" aria-label="radio 1" /><Dropdown.Item>Try Fee</Dropdown.Item>
+        </div>
+        <div className='check'>
+            <Form.Check type="radio" aria-label="radio 1" /><Dropdown.Item>Feature Fee</Dropdown.Item>
+        </div>
+        <div className='check'>
+            <FiArrowDown /><Dropdown.Item>Feature Fee</Dropdown.Item>
+        </div>
+        <div className='check'>
+            <FiArrowUp /><Dropdown.Item>Feature Fee</Dropdown.Item>
+        </div>
+      </Dropdown.Menu>
+    </Dropdown>
         </div>
         </div>
         <div className='body__text'>
@@ -72,7 +104,7 @@ function Body() {
                                 <div className='hidden__text'>
                     <p>{data.text}</p>
                     <div className='penEdit'>
-                        <h4>{data.rate}%</h4>
+                        <p>{data.rate}%</p>
                         <div className='trig'>
                             <Modal1 title={data.title} id={data._id} />
                         </div>
@@ -104,7 +136,7 @@ function Body() {
                                 <div className='hidden__text'>
                     <p>{data.text}</p>
                     <div className='penEdit'>
-                        <h4>{data.rate}%</h4>
+                        <p>{data.rate}%</p>
                         <div className='trig'>
                             <Modal1 title={data.title} id={data._id} />
                         </div>
@@ -143,7 +175,7 @@ function Body() {
                                 <div className='hidden__text'>
                     <p>{data.text}</p>
                     <div className='penEdit'>
-                        <h4>{data.rate}%</h4><BsFillPenFill />
+                        <p>{data.rate}%</p><BsFillPenFill />
                     </div>
                 </div>
                             </>

@@ -74,9 +74,17 @@ function Modal1({ title, id }) {
           <div>{title}</div>
           <form onSubmit={updateRate} className="input1">
             <label>Enter fee as percentage</label>
-            <input value={rate} name="rate" onChange={onChange} />
-            <button>Save Changes</button>
+            <input
+              value={rate}
+              name="rate"
+              onChange={onChange}
+              className="mode__input"
+            />
+            <button className="btn__mode">Save Changes</button>
           </form>
+          <button onClick={closeModal} className="btn__mode1">
+            Cancel
+          </button>
         </div>
       </Modal>
     </div>

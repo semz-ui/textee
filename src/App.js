@@ -1,6 +1,5 @@
 import "./App.css";
 import Body from "./Body";
-import Modal1 from "./Modal1";
 
 function App() {
   return (

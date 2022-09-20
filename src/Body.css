@@ -77,6 +77,17 @@
     border-radius: 10px;
 }
 
+.check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10%;
+}
+
+.trig {
+    margin-left: 10%;
+}
+
 .hidden__text {
     display: flex;
     justify-content: space-between;
@@ -89,9 +100,12 @@
     align-items: center;
 }
 
+
+
 .penEdit {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 @media only screen and (max-width: 796px) {
