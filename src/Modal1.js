@@ -23,7 +23,7 @@ function Modal1({ title, id }) {
 
   const { rate } = data;
   // const url = "http://localhost:5000/api/texts/update/";
-  const url = "https://texterr.herokuapp.com/api/texts";
+  const url = "https://texterr.herokuapp.com/api/texts/update";
 
   const updateRate = async (e) => {
     const userData = {
@@ -32,7 +32,6 @@ function Modal1({ title, id }) {
     };
     // e.preventDefault();
     const response = axios.put(url, userData);
-    console.log(response);
     return response;
   };
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -56,9 +55,6 @@ function Modal1({ title, id }) {
   function closeModal() {
     setIsOpen(false);
   }
-
-  console.log(rate);
-  console.log(id);
   return (
     <div>
       <BsFillPenFill onClick={openModal} />

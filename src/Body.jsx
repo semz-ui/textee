@@ -24,7 +24,6 @@ function Body() {
       getData()
     }, [])
 
-    console.log(datas)
 
     
 
@@ -38,7 +37,7 @@ function Body() {
         setOpen2(current => !current)
     }
   return (
-    <div className='body'>]
+    <div className='body'>
         <div>
             <h1>Store Fees</h1>
         </div>

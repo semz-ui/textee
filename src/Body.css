@@ -2,12 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 90px;
+    margin-top: 10%;
 }
 
 .body1 {
-    margin-top: 70px;
-    width: 780px;
+    margin-top: 10%;
+    width: 60%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -29,7 +29,7 @@
 }
 
 .body_input {
-    width: 40rem;
+    width: 100%;
     min-height: 2rem;
     border: none;
 }
@@ -92,4 +92,35 @@
 .penEdit {
     display: flex;
     align-items: center;
+}
+
+@media only screen and (max-width: 796px) {
+  .body {
+    overflow: hidden;
+    margin-left: 10%;
+  }
+  .body__text {
+    width: 80%;
+  }
+  .mill {
+    width: 100%;
+  }
+  .mill1 {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 474px) {
+  .body {
+    overflow: hidden;
+    margin-left: 20%;
+  }
+  .body__text {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 348px) {
+  .body {
+    overflow: hidden;
+    margin-left: 30%;
+  }
 }
