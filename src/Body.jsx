@@ -6,14 +6,21 @@ import './Body.css'
 import axios from 'axios'
 import {BsSearch, BsFillPenFill} from 'react-icons/bs'
 import {FiArrowDown, FiArrowUp} from 'react-icons/fi'
+import {GiPlayButton} from 'react-icons/gi'
 import {RiArrowDropDownLine} from 'react-icons/ri'
 import Modal1 from './Modal1'
+import Modal2 from './Modal2';
+import Modal3 from './Modal3';
 
 function Body() {
     const [ open, setOpen ] = useState(false)
     const [ open1, setOpen1 ] = useState(false)
     const [ open2, setOpen2 ] = useState(false)
+    const [admin, setAdmin] = useState(true)
     const [ datas, setDatas ] = useState([])
+    const [ info, setInfo ] = useState({})
+    const [ info1, setInfo1 ] = useState({})
+    const [ info2, setInfo2 ] = useState({})
 
     // const url = 'http://localhost:5000/api/texts/'
     const url = 'https://texterr.herokuapp.com/api/texts'
@@ -21,12 +28,15 @@ function Body() {
         const response = await axios.get(url)
         const data = await response.data
         setDatas(data)
+        setInfo(data[0])
+        setInfo1(data[1])
+        setInfo2(data[2])
     }
 
     useEffect(() => {
       getData()
     }, [])
-
+ 
 
     
 
@@ -39,10 +49,17 @@ function Body() {
     const onClose2 = () => {
         setOpen2(current => !current)
     }
+    const onAdmin = () => {
+        setAdmin(current => !current)
+    }
+    console.log(info)
   return (
     <div className='body'>
         <div>
             <h1>Store Fees</h1>
+            <div onClick={onAdmin}>
+                <GiPlayButton />Admin
+            </div>
         </div>
         <div className='body1'>
             <div className='search'>
@@ -88,7 +105,7 @@ function Body() {
             <div className='body2'>
                 <div className='mill'>
                 <div className='mil'>
-                    <h2>Millwoods</h2>
+                    <h2>{info.companyName}</h2>
                     <a href='google.com'>link</a>
                 </div>
                 <div>
@@ -97,30 +114,58 @@ function Body() {
             </div>
                 {
                     open ? <>
-                {
-                    datas.map((data) => {
-                        return (
-                            <div key={data._id}>
+                        <div className='hd_t'><p className='ht'>Platform Fee</p></div>
                                 <div className='hidden__text'>
-                    <p>{data.text}</p>
+                    <p>{info.platformFee.description}</p>
                     <div className='penEdit'>
-                        <p>{data.rate}%</p>
-                        <div className='trig'>
-                            <Modal1 title={data.title} id={data._id} />
-                        </div>
+                        <p>{info.platformFee.fees}%</p>
+                        {
+                            admin ? <><div className='trig'>
+                            {/* <Modal1 title={data.title} id={data._id} /> */}
+                            <Modal2 title={info.title} id={info._id} description={info.platformFee.description} />
+                        </div></> : <></>
+                        }
                     </div>
                 </div>
-                            </div>
-                        )
-                    })
+                    </> : <></>
                 }
+                {
+                    open ? <>
+                        <div className='hd_t'><p className='ht'>Try Fee</p></div>
+                                <div className='hidden__text'>
+                    <p>{info.TryFee.description}</p>
+                    <div className='penEdit'>
+                        <p>{info.TryFee.fees}%</p>
+                        {
+                            admin ? <><div className='trig'>
+                                <Modal1 title={info.title} id={info._id} description={info.TryFee.description} />
+                        </div></> : <></>
+                        }
+                    </div>
+                </div>
+                    </> : <></>
+                }
+                {
+                    open ? <>
+                        <div className='hd_t'><p className='ht'>Feature Fee</p></div>
+                                <div className='hidden__text'>
+                    <p>{info.FeatureFee.description}</p>
+                    <div className='penEdit'>
+                        <p>{info.FeatureFee.fees}%</p>
+                        {
+                            admin ? <><div className='trig'>
+                            <Modal3 title={info.title} id={info._id} description={info.FeatureFee.description} />
+                        </div></> : <></>
+                        }
+                    </div>
+                </div>
                     </> : <></>
                 }
             </div>
             <div>
                 <div className='mill1'>
                 <div className='mil'>
-                    <h2>Raie Eyewear</h2>
+                    <h2>{info1.companyName}</h2>
                     <a href='google.com'>link</a>
                 </div>
                 <div>
@@ -129,23 +174,46 @@ function Body() {
             </div>
                 {
                     open1 ? <>
-                {
-                    datas.map((data) => {
-                        return (
-                            <div key={data._id}>
+                    <div className='hd_t'><p className='ht'>Platform Fee</p></div>
                                 <div className='hidden__text'>
-                    <p>{data.text}</p>
+                    <p>{info1.platformFee.description}</p>
                     <div className='penEdit'>
-                        <p>{data.rate}%</p>
+                        <p>{info1.platformFee.fees}%</p>
                         <div className='trig'>
-                            <Modal1 title={data.title} id={data._id} />
+                            {/* <Modal1 title={data.title} id={data._id} /> */}
+                            <Modal3 title={info1.title} id={info1._id} description={info1.platformFee.description} />
                         </div>
                     </div>
                 </div>
-                            </div>
-                        )
-                    })
+                    </> : <></>
                 }
+                {
+                    open1 ? <>
+                    <div className='hd_t'><p className='ht'>Try Fee</p></div>
+                                <div className='hidden__text'>
+                    <p>{info1.TryFee.description}</p>
+                    <div className='penEdit'>
+                        <p>{info1.TryFee.fees}%</p>
+                        <div className='trig'>
+                            <Modal1 title={info1.title} id={info1._id} description={info1.TryFee.description} />
+                        </div>
+                    </div>
+                </div>
+                    </> : <></>
+                }
+                {
+                    open1 ? <>
+                    <div className='hd_t'><p className='ht'>Feature Fee</p></div>
+                                <div className='hidden__text'>
+                    <p>{info1.FeatureFee.description}</p>
+                    <div className='penEdit'>
+                        <p>{info1.FeatureFee.fees}%</p>
+                        <div className='trig'>
+                            <Modal3 title={info1.title} id={info1._id} description={info1.FeatureFee.description} />
+                            {/* <Modal1 title={data.title} id={data._id} /> */}
+                        </div>
+                    </div>
+                </div>
                     </> : <></>
                 }
             </div>
@@ -159,7 +227,7 @@ function Body() {
             <div className=''>
                 <div className='mill'>
                 <div className='mil'>
-                    <h2>Sirens Swimwear</h2>
+                    <h2>{info2.companyName}</h2>
                     <a href='google.com'>link</a>
                 </div>
                 <div>
@@ -168,24 +236,56 @@ function Body() {
             </div>
                 {
                     open2 ? <>
-                {
-                    datas.map((data) => {
-                        return (
-                            <>
+                        <div className='hd_t'><p className='ht'>Platform Fee</p></div>
                                 <div className='hidden__text'>
-                    <p>{data.text}</p>
+                    <p>{info2.platformFee.description}</p>
                     <div className='penEdit'>
-                        <p>{data.rate}%</p><BsFillPenFill />
+                        <p>{info2.platformFee.fees}%</p>
+                        {
+                            admin ? <><div className='trig'>
+                            {/* <Modal1 title={data.title} id={data._id} /> */}
+                            <Modal2 title={info2.title} id={info2._id} description={info2.platformFee.description} />
+                        </div></> : <></>
+                        }
                     </div>
                 </div>
-                            </>
-                        )
-                    })
+                    </> : <></>
                 }
+                {
+                    open2 ? <>
+                        <div className='hd_t'><p className='ht'>Try Fee</p></div>
+                                <div className='hidden__text'>
+                    <p>{info2.TryFee.description}</p>
+                    <div className='penEdit'>
+                        <p>{info2.TryFee.fees}%</p>
+                        {
+                            admin ? <><div className='trig'>
+                                <Modal1 title={info2.title} id={info2._id} description={info2.TryFee.description} />
+                        </div></> : <></>
+                        }
+                    </div>
+                </div>
+                    </> : <></>
+                }
+                {
+                    open2 ? <>
+                        <div className='hd_t'><p className='ht'>Feature Fee</p></div>
+                                <div className='hidden__text'>
+                    <p>{info2.FeatureFee.description}</p>
+                    <div className='penEdit'>
+                        <p>{info2.FeatureFee.fees}%</p>
+                        {
+                            admin ? <><div className='trig'>
+                            <Modal3 title={info2.title} id={info2._id} description={info2.FeatureFee.description} />
+                        </div></> : <></>
+                        }
+                    </div>
+                </div>
                     </> : <></>
                 }
             </div>
         </div>
+        {/* <div style={{ marginBottom: "30%" }}></div> */}
     </div>
   )
 }

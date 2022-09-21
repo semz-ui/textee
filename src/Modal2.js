@@ -16,7 +16,7 @@ const customStyles = {
   },
 };
 
-function Modal1({ title, id, description }) {
+function Modal2({ title, id, description }) {
   console.log(id);
   const [data, setdata] = useState({
     fees: "",
@@ -24,14 +24,14 @@ function Modal1({ title, id, description }) {
 
   const { fees } = data;
 
-  // const url = "http://localhost:5000/api/texts/update/";
+  //   const url = "http://localhost:5000/api/texts/update/";
   const url = "https://texterr.herokuapp.com/api/texts/update";
 
   const updateRate = async (e) => {
     // e.preventDefault();
     const response = axios.patch(url, {
       id,
-      TryFee: {
+      platformFee: {
         description: description,
         fees: fees,
       },
@@ -96,4 +96,4 @@ function Modal1({ title, id, description }) {
   );
 }
 
-export default Modal1;
+export default Modal2;
