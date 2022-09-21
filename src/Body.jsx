@@ -179,10 +179,13 @@ function Body() {
                     <p>{info1.platformFee.description}</p>
                     <div className='penEdit'>
                         <p>{info1.platformFee.fees}%</p>
-                        <div className='trig'>
-                            {/* <Modal1 title={data.title} id={data._id} /> */}
+                        {
+                            admin ? <>
+                                <div className='trig'>
                             <Modal3 title={info1.title} id={info1._id} description={info1.platformFee.description} />
                         </div>
+                            </> : <></>
+                        }
                     </div>
                 </div>
                     </> : <></>
@@ -194,9 +197,13 @@ function Body() {
                     <p>{info1.TryFee.description}</p>
                     <div className='penEdit'>
                         <p>{info1.TryFee.fees}%</p>
-                        <div className='trig'>
+                        {
+                            admin ? <>
+                                <div className='trig'>
                             <Modal1 title={info1.title} id={info1._id} description={info1.TryFee.description} />
                         </div>
+                            </> : <></>
+                        }
                     </div>
                 </div>
                     </> : <></>
@@ -208,10 +215,13 @@ function Body() {
                     <p>{info1.FeatureFee.description}</p>
                     <div className='penEdit'>
                         <p>{info1.FeatureFee.fees}%</p>
-                        <div className='trig'>
+                        {
+                            admin ? <>
+                                <div className='trig'>
                             <Modal3 title={info1.title} id={info1._id} description={info1.FeatureFee.description} />
-                            {/* <Modal1 title={data.title} id={data._id} /> */}
                         </div>
+                            </> : <></>
+                        }
                     </div>
                 </div>
                     </> : <></>
@@ -285,7 +295,7 @@ function Body() {
                 }
             </div>
         </div>
-        {/* <div style={{ marginBottom: "30%" }}></div> */}
+        <div style={{ marginBottom: "20%" }}></div>
     </div>
   )
 }
